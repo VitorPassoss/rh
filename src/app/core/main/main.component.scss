@@ -1,0 +1,14 @@
+#custom-main {
+    transition: margin-left .5s;
+    //height: 100%;
+    height: calc(100vh - 64px);
+    overflow: overlay;
+    background-color: var(--color-background);
+}
+
+.sidemenu-margin {
+    @media screen and (max-width: 500px) {}
+    @media screen and (min-width: 501px) {
+        margin-left: var(--sidemenu-width);
+      }
+}
