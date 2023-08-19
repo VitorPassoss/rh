@@ -3,6 +3,7 @@ import { Component, OnInit} from '@angular/core';
 import { SharedService } from 'src/app/shared/shared.service';
 import { InsumosService } from '../insumos.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { LoadingService } from 'src/app/shared/services/loading.service';
 
 @Component({
   selector: 'app-list-insumos',
@@ -22,8 +23,11 @@ export class ListInsumosComponent implements OnInit {
     public insumosService: InsumosService,
     public sharedService: SharedService,
     private formBuilder: FormBuilder,
+    public loadingService:LoadingService
+
 
   ){
+
     this.entradaForm = this.formBuilder.group({
       fornecedor: [null],
       tipo_insumo: [null],
@@ -39,11 +43,13 @@ export class ListInsumosComponent implements OnInit {
   }
   
   async getEntradas(){
+    this.loadingService.present()
     this.insumosService.getEntradas().subscribe(
       {
         next: async (res:any) => {
           console.log(res)
           this.MateriaPrima = res
+          this.loadingService.dismiss()
         },
         error: async (err:any) => {
           console.log(err)
@@ -94,15 +100,18 @@ export class ListInsumosComponent implements OnInit {
 
 
 submitForm() {
+  this.loadingService.present()
   if (this.entradaForm.valid) { // check if the form is valid
       const formData = this.entradaForm.value; // get the form data
 
       this.insumosService.createEntrada(formData).subscribe({
         next: async () => {
+          this.loadingService.dismiss()
           this.sharedService.showToastSuccess("Registro criado com sucesso");
           this.visible = false;
           this.entradaForm.reset();
           this.getEntradas()
+          
         },
         error: async () => {
           this.sharedService.showToastError("Ocorreu algum problema no registro");

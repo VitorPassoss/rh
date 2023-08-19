@@ -11,6 +11,7 @@ import { ToastModule } from 'primeng/toast';
 import { PasswordModule } from 'primeng/password';
 import { ButtonModule } from 'primeng/button';
 import { PanelModule } from 'primeng/panel';
+import { BlockLoadingComponent } from '../shared/block-loading/block-loading.component';
 
 
 
@@ -28,7 +29,8 @@ import { PanelModule } from 'primeng/panel';
     ButtonModule,
     ToastModule,
     ReactiveFormsModule,
-    PanelModule
+    PanelModule,
+    BlockLoadingComponent
   ],
   exports: [
     AppRoutingModule

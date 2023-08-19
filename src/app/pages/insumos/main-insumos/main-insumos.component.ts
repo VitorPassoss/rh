@@ -1,4 +1,5 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { LoadingService } from 'src/app/shared/services/loading.service';
 import { FornecedoresComponent } from '../fornecedores/fornecedores.component';
 import { ListInsumosComponent } from '../list-insumos/list-insumos.component';
 import { ListStockInsumosComponent } from '../list-stock-insumos/list-stock-insumos.component';
@@ -11,10 +12,12 @@ import { ListTipoInsumoComponent } from '../list-tipo-insumo/list-tipo-insumo.co
 })
 export class MainInsumosComponent {
 
+ 
   @ViewChild('stockInsumos') stockInsumos!: ListStockInsumosComponent;
   @ViewChild('listInsumos') listInsumos!: ListInsumosComponent
   @ViewChild('tipoInsumos') tipoInsumos!: ListTipoInsumoComponent;
   @ViewChild('fornecedores') fornecedores!: FornecedoresComponent;
+
 
 
   onTabChange(event:any) {
