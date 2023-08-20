@@ -12,6 +12,10 @@ export class ListStockInsumosComponent implements OnInit {
   EstoqueItem: any[] = [];
   visible: boolean = false;
 
+  draggedItem: undefined | null;
+
+  draggedProducts: undefined;
+
 
   constructor(
     public insumosService: InsumosService,
@@ -43,12 +47,21 @@ export class ListStockInsumosComponent implements OnInit {
 
 
   onSelectionChange(event: any) {
-    console.log(event)
     console.log(this.EstoqueItem)
   }
 
-  showAddInsumo() {
-    this.visible = true;
+
+startProcess(){
+  this.visible = true;
+  console.log(this.EstoqueItem)
+}
+
+dragStart(item:any) {
+  this.draggedItem = item;
+}
+
+dragEnd() {
+  this.draggedItem = null;
 }
 
 

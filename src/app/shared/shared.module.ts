@@ -14,6 +14,7 @@ import { MessageService } from 'primeng/api';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 
+import { DragDropModule } from 'primeng/dragdrop';
 
 @NgModule({
   declarations: [],
@@ -28,7 +29,8 @@ import { ProgressSpinnerModule } from 'primeng/progressspinner';
     InputNumberModule,
     DropdownModule,
     ReactiveFormsModule,
-    ProgressSpinnerModule
+    ProgressSpinnerModule,
+    DragDropModule
   ],
   exports:[
     TabViewModule,
@@ -40,7 +42,8 @@ import { ProgressSpinnerModule } from 'primeng/progressspinner';
     InputNumberModule,
     DropdownModule,
     ReactiveFormsModule,
-    ProgressSpinnerModule
+    ProgressSpinnerModule,
+    DragDropModule
   ],
   providers: [MessageService]
 
