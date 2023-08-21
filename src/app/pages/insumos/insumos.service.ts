@@ -41,6 +41,7 @@ export class InsumosService {
     return this.http.post<any>(`${environment.urlApi}/entrada/insumos`, data)
   }
 
+ 
 
 
 }

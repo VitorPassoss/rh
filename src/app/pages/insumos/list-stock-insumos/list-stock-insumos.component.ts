@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { SharedService } from 'src/app/shared/shared.service';
 import { InsumosService } from '../insumos.service';
+import { ProducaoService } from '../../producao/producao.service'
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-list-stock-insumos',
@@ -12,22 +14,51 @@ export class ListStockInsumosComponent implements OnInit {
   EstoqueItem: any[] = [];
   visible: boolean = false;
 
-  draggedItem: undefined | null;
+  productItems:any = []
 
-  draggedProducts: undefined;
+  targetItems:any = []
+  selectedItems: any[] = [];
 
+
+  dataInsumo:any = []
+  dataProduto:any = []
 
   constructor(
     public insumosService: InsumosService,
     public sharedService: SharedService,
-
+    public producaoService: ProducaoService,
+    private cdr: ChangeDetectorRef
   ){
-    
   }
 
   ngOnInit() {
     this.getEstoque()
+    this.cdr.markForCheck();
+    this.getProdutos()
+
   }
+
+
+
+onItemMovedToTarget(event: any) {
+  event.items.forEach((item: any) => {
+    item.isSelected = true;
+    this.selectedItems.push(item);
+  });
+}
+
+onItemMovedToSource(event: any) {
+  event.items.forEach((item: any) => {
+    item.isSelected = false;
+    item.leite_processado
+    item.produto = item.id
+    const index = this.selectedItems.indexOf(item);
+    if (index > -1) {
+      this.selectedItems.splice(index, 1);
+    }
+  });
+}
+
   
   async getEstoque(){
     this.insumosService.getEstoque().subscribe(
@@ -35,6 +66,7 @@ export class ListStockInsumosComponent implements OnInit {
         next: async (res:any) => {
           console.log(res)
           this.Estoque = res
+          
         },
         error: async (err:any) => {
           console.log(err)
@@ -44,26 +76,67 @@ export class ListStockInsumosComponent implements OnInit {
     )
   }
 
+  async getProdutos(){
+    this.producaoService.getProdutos().subscribe(
+      {
+        next: async (res:any) => {
+          console.log(res)
+          this.productItems = res
+        },
+        error: async (err:any) => {
+          console.log(err)
+          this.sharedService.showToastError("Falha ao carregar produtos")
+        }
+      }
+    )
 
-
-  onSelectionChange(event: any) {
-    console.log(this.EstoqueItem)
   }
 
 
-startProcess(){
-  this.visible = true;
-  console.log(this.EstoqueItem)
-}
 
-dragStart(item:any) {
-  this.draggedItem = item;
-}
 
-dragEnd() {
-  this.draggedItem = null;
-}
+  onSelectionChange(event: any) {
+    
+  }
 
+
+  startProcess(){
+    this.EstoqueItem.forEach((item)=>{
+      item.quantidade_estoque = item.quantidade
+    })
+    this.visible = true;
+   console.log(this.EstoqueItem)
+  }
+
+
+  submitProcess(){
+    const payload = {
+      status: "EA",
+      insumos: this.EstoqueItem.map(item => ({
+            quantidade: item.quantidade,
+            tipo_insumo: item.tipo_insumo.id,
+            valor: item.valor  // ou qualquer outro campo relevante
+        })),
+      produtos: this.selectedItems.map(item => ({
+            produto: item.id, 
+            leite_processado: item.leite_processado,
+            quantidade: item.quantidade  // ou qualquer outro campo relevante
+        }))
+    }
+
+    this.producaoService.startProducao(payload).subscribe(
+      {
+        next: async (res) => {
+          console.log(res)
+        }
+      }
+    )
+
+
+    
+
+  
+}
 
 
 
@@ -79,5 +152,8 @@ dragEnd() {
 
   return `${day}/${month}/${year}`;
 }
+
+
+
 
 }

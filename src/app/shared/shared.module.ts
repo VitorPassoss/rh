@@ -15,6 +15,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 
 import { DragDropModule } from 'primeng/dragdrop';
+import { PickListModule } from 'primeng/picklist';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [],
@@ -30,7 +32,9 @@ import { DragDropModule } from 'primeng/dragdrop';
     DropdownModule,
     ReactiveFormsModule,
     ProgressSpinnerModule,
-    DragDropModule
+    DragDropModule,
+    PickListModule,
+    FormsModule
   ],
   exports:[
     TabViewModule,
@@ -43,7 +47,9 @@ import { DragDropModule } from 'primeng/dragdrop';
     DropdownModule,
     ReactiveFormsModule,
     ProgressSpinnerModule,
-    DragDropModule
+    DragDropModule,
+    PickListModule,
+    FormsModule
   ],
   providers: [MessageService]
 

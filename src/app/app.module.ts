@@ -9,7 +9,7 @@ import { SharedModule } from './shared/shared.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TableModule } from 'primeng/table';
 import { HttpClientModule } from '@angular/common/http';
-
+import { ProducaoModule } from './pages/producao/producao.module'
 @NgModule({
   declarations: [
     AppComponent,
@@ -21,8 +21,9 @@ import { HttpClientModule } from '@angular/common/http';
     SharedModule,
     InsumosModule,
     BrowserAnimationsModule,
-    TableModule ,
-    HttpClientModule
+    TableModule,
+    HttpClientModule,
+    ProducaoModule
   ],
   providers: [],
   bootstrap: [AppComponent]
