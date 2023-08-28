@@ -3,6 +3,7 @@ import { SharedService } from 'src/app/shared/shared.service';
 import { InsumosService } from '../insumos.service';
 import { ProducaoService } from '../../producao/producao.service'
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { LoadingService } from 'src/app/shared/services/loading.service';
 
 @Component({
   selector: 'app-list-stock-insumos',
@@ -23,19 +24,24 @@ export class ListStockInsumosComponent implements OnInit {
   dataInsumo:any = []
   dataProduto:any = []
 
+  optionsEstoque:any = []
+
   constructor(
     public insumosService: InsumosService,
     public sharedService: SharedService,
     public producaoService: ProducaoService,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
+    public loadingService:LoadingService
+
   ){
   }
 
   ngOnInit() {
     this.getEstoque()
+    
     this.cdr.markForCheck();
     this.getProdutos()
-
+    this.EstoqueItem = []
   }
 
 
@@ -64,12 +70,11 @@ onItemMovedToSource(event: any) {
     this.insumosService.getEstoque().subscribe(
       {
         next: async (res:any) => {
-          console.log(res)
           this.Estoque = res
           
+                    
         },
         error: async (err:any) => {
-          console.log(err)
           this.sharedService.showToastError("Falha ao carregar registros")
         }
       }
@@ -80,11 +85,9 @@ onItemMovedToSource(event: any) {
     this.producaoService.getProdutos().subscribe(
       {
         next: async (res:any) => {
-          console.log(res)
           this.productItems = res
         },
         error: async (err:any) => {
-          console.log(err)
           this.sharedService.showToastError("Falha ao carregar produtos")
         }
       }
@@ -94,22 +97,39 @@ onItemMovedToSource(event: any) {
 
 
 
-
-  onSelectionChange(event: any) {
-    
+  updateItem() {
+    this.cdr.markForCheck();
+    console.log(this.EstoqueItem)
   }
+
+
+
+
 
 
   startProcess(){
-    this.EstoqueItem.forEach((item)=>{
-      item.quantidade_estoque = item.quantidade
+
+    this.Estoque.forEach((item:any)=>{
+      if(item.tipo_insumo.nome == "Leite" ){
+          this.EstoqueItem.push(item)
+      }
     })
+    this.EstoqueItem.forEach((item)=>{
+      item.quantidade_estoque = item.quantidade  
+    })
+    
     this.visible = true;
-   console.log(this.EstoqueItem)
+   
   }
 
 
+  closeDialog(){
+    this.EstoqueItem = []
+  }
+
   submitProcess(){
+    this.loadingService.present()
+
     const payload = {
       status: "EA",
       insumos: this.EstoqueItem.map(item => ({
@@ -127,7 +147,16 @@ onItemMovedToSource(event: any) {
     this.producaoService.startProducao(payload).subscribe(
       {
         next: async (res) => {
-          console.log(res)
+          this.loadingService.dismiss()
+          this.sharedService.showToastSuccess("Registro criado com sucesso");
+          this.selectedItems = []
+          this.EstoqueItem = []
+          this.visible = false
+          this.getEstoque()
+          
+        },
+        error: async (err) => {
+          this.sharedService.showToastError("Ocorreu algum problema no registro");
         }
       }
     )

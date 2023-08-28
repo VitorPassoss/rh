@@ -17,6 +17,7 @@ import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { DragDropModule } from 'primeng/dragdrop';
 import { PickListModule } from 'primeng/picklist';
 import { FormsModule } from '@angular/forms';
+import { MultiSelectModule } from 'primeng/multiselect';
 
 @NgModule({
   declarations: [],
@@ -34,7 +35,8 @@ import { FormsModule } from '@angular/forms';
     ProgressSpinnerModule,
     DragDropModule,
     PickListModule,
-    FormsModule
+    FormsModule,
+    MultiSelectModule
   ],
   exports:[
     TabViewModule,
@@ -49,7 +51,8 @@ import { FormsModule } from '@angular/forms';
     ProgressSpinnerModule,
     DragDropModule,
     PickListModule,
-    FormsModule
+    FormsModule,
+    MultiSelectModule
   ],
   providers: [MessageService]
 

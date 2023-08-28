@@ -20,4 +20,8 @@ export class ProducaoService {
     return this.http.post<any>(`${environment.urlApi}/producao/`, data)
   }
 
+  getProducao(){
+    return this.http.get<any>(`${environment.urlApi}/producao/`)
+  }
+
 }
