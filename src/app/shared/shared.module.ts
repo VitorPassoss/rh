@@ -19,6 +19,8 @@ import { PickListModule } from 'primeng/picklist';
 import { FormsModule } from '@angular/forms';
 import { MultiSelectModule } from 'primeng/multiselect';
 
+import { PasswordModule } from 'primeng/password';
+
 @NgModule({
   declarations: [],
   imports: [
@@ -36,7 +38,8 @@ import { MultiSelectModule } from 'primeng/multiselect';
     DragDropModule,
     PickListModule,
     FormsModule,
-    MultiSelectModule
+    MultiSelectModule,
+    PasswordModule
   ],
   exports:[
     TabViewModule,
@@ -52,7 +55,9 @@ import { MultiSelectModule } from 'primeng/multiselect';
     DragDropModule,
     PickListModule,
     FormsModule,
-    MultiSelectModule
+    MultiSelectModule,
+    PasswordModule
+    
   ],
   providers: [MessageService]
 

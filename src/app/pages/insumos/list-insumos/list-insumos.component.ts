@@ -19,6 +19,8 @@ export class ListInsumosComponent implements OnInit {
 
   entradaForm: FormGroup
 
+  entradaFiltrada: any[] = this.MateriaPrima;
+
   constructor(
     public insumosService: InsumosService,
     public sharedService: SharedService,
@@ -40,7 +42,27 @@ export class ListInsumosComponent implements OnInit {
     this.getEntradas()
     this.getInsumos()
     this.getFornecedores()
+    this.entradaFiltrada = [...this.MateriaPrima];
   }
+
+  filtrarPorMesEAno(dataInput: string): void {
+    const [yearInput, monthInput] = dataInput.split('-').map(Number); // Convertendo as partes para números
+  
+    this.entradaFiltrada = this.MateriaPrima.filter((item:any) => {
+      const dataItem = new Date(item.created_at);
+  
+      const monthItem = dataItem.getMonth() + 1; // Os meses em JavaScript são base 0, por isso adicionamos 1.
+      const yearItem = dataItem.getFullYear();
+  
+      return monthItem === monthInput && yearItem === yearInput;
+    });
+  }
+  
+  
+  limparFiltro(): void {
+    this.entradaFiltrada = [...this.MateriaPrima];
+  }
+  
   
   async getEntradas(){
     this.loadingService.present()
@@ -49,6 +71,7 @@ export class ListInsumosComponent implements OnInit {
         next: async (res:any) => {
           console.log(res)
           this.MateriaPrima = res
+          this.entradaFiltrada = [...this.MateriaPrima];
           this.loadingService.dismiss()
         },
         error: async (err:any) => {

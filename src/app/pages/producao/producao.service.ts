@@ -24,4 +24,28 @@ export class ProducaoService {
     return this.http.get<any>(`${environment.urlApi}/producao/`)
   }
 
+  createTypeProduct(data:any){
+    return this.http.post<any>(`${environment.urlApi}/producao/produtos`, data)
+  }
+
+  finishProduction(id:any, data:any){
+    return this.http.put<any>(`${environment.urlApi}/producao/${id}`, data)
+  }
+
+  produtosEstoque(){
+    return this.http.get<any>(`${environment.urlApi}/producao/estoque`)
+  }
+
+  destinacoes(){
+    return this.http.get<any>(`${environment.urlApi}/saidas/destinacao`)
+  }
+
+  SaveDestinacoes(data:any){
+    return this.http.post<any>(`${environment.urlApi}/saidas/destinacao`, data)
+  }
+
+  registroSaida(data:any){
+    return this.http.post<any>(`${environment.urlApi}/saidas/`, data)
+  }
+
 }

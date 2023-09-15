@@ -10,9 +10,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TableModule } from 'primeng/table';
 import { HttpClientModule } from '@angular/common/http';
 import { ProducaoModule } from './pages/producao/producao.module'
+import { SaidasModule } from './pages/saidas/saidas.module';
+import { LoginComponent } from './pages/login/login.component';
 @NgModule({
   declarations: [
     AppComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
@@ -23,7 +26,8 @@ import { ProducaoModule } from './pages/producao/producao.module'
     BrowserAnimationsModule,
     TableModule,
     HttpClientModule,
-    ProducaoModule
+    ProducaoModule,
+    SaidasModule
   ],
   providers: [],
   bootstrap: [AppComponent]

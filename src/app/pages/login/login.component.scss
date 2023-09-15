@@ -1,0 +1,124 @@
+:host {
+    height: 100%;
+    overflow: hidden;
+    background-color: #3A55FC !important;
+
+}
+
+
+
+
+.container {
+    width: 100%;
+    height: 100%;
+    text-align: center;
+}
+
+#cardLogin {
+    position: absolute;
+    background-color: #fff;
+    border-radius: 8px;
+    height: 324px;
+    margin-top: 310px;
+    z-index: 1;
+    padding-inline: 30px;
+}
+
+#lbTaurus {
+    position: absolute;
+    left: 26.92%;
+    right: 27.18%;
+    top: 18.73%;
+    bottom: 72.99%;
+
+    font-style: normal;
+    font-weight: 400;
+    font-size: 55px;
+    line-height: 53px;
+
+    color: #FFFFFF;
+}
+
+#lbOne {
+    position: absolute;
+    left: 43.85%;
+    right: 44.1%;
+    top: 28.01%;
+    bottom: 70.14%;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 24px;
+    color: #FFFFFF;
+}
+
+#lbLogin {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.5rem;
+    line-height: 16px;
+    width: 100%;
+    color: #3A55FC;
+    margin-top: 19px;
+}
+
+#inputEmail,
+#btnSubmit,
+#inputPassword {
+    font-style: normal;
+    margin-top: 19px;
+    font-size: 1rem;
+    width: 100%;
+
+    ::ng-deep button {
+        font-size: 1rem;
+    }
+}
+
+#inputPassword {
+    ::ng-deep div {
+        width: 100%;
+
+        ::ng-deep input {
+            font-style: normal;
+            font-size: 1rem;
+            width: 100%;
+        }
+    }
+    
+}
+
+#lbEsqueciSenha {
+    padding-top: 35px;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 22px;
+    /* identical to box height */
+    width: 100%;
+    color: #3A55FC;
+}
+
+
+
+@media only screen and (max-width: 480px) {
+    img {
+        width: 116%;
+        margin-left: -8%;
+        margin-top: -10px;
+    }
+}
+
+@media only screen and (min-width: 481px) and (max-width: 768px) {
+    img {
+        margin-left: -9vw;
+        padding-top: 5vh;
+    }
+}
+
+@media only screen and (min-width: 769px) {
+    img {
+        margin-left: -9vw;
+        padding-top: 5vh;
+    }
+}

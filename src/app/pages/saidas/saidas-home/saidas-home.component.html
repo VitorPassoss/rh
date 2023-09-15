@@ -1,0 +1,18 @@
+<p-tabView styleClass="tabview-custom" >
+    <p-tabPanel>
+        <ng-template pTemplate="header">
+            <i class="pi pi-calendar mr-1"></i>
+            <span>Saidas</span>
+        </ng-template>
+        <app-saidas-list></app-saidas-list>
+    </p-tabPanel>
+    <p-tabPanel header="Tipos de Materiais">
+        <ng-template pTemplate="header">
+            <i class="pi pi-calendar mr-1"></i>
+            <span>Destinações</span>
+        </ng-template>
+        <app-saidas-destinacao></app-saidas-destinacao>
+    </p-tabPanel>
+
+  
+</p-tabView>

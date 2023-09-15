@@ -140,8 +140,8 @@ onItemMovedToSource(event: any) {
       produtos: this.selectedItems.map(item => ({
             produto: item.id, 
             leite_processado: item.leite_processado,
-            quantidade: item.quantidade  // ou qualquer outro campo relevante
-        }))
+            quantidade: item.quantidade
+          }))
     }
 
     this.producaoService.startProducao(payload).subscribe(

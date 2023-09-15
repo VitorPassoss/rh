@@ -13,30 +13,18 @@
             Producao
         </a>
     </div>
-    <div class="sidenav-item" routerLink="demanda" routerLinkActive="active">
+    <div class="sidenav-item" routerLink="saidas" routerLinkActive="active">
         <a>
             <span class="material-icons mr-2 ml-1">loop</span>
             Saidas
         </a>
     </div>
-    <div class="sidenav-item" routerLinkActive="active">
+
+    <div class="sidenav-item" (click)="logout()">
+        <!-- <img class="sidenav-icon" src="/assets/svg/service_order.svg" alt=""> -->
         <a>
-            <span class="material-icons mr-2 ml-1">
-                grid_view
-            </span>
-            Produtos
-        </a>
-    </div>
-    <div class="sidenav-item" routerLink="contrato" routerLinkActive="active">
-        <a>
-            <span class="material-icons mr-2 ml-2">group</span>
-            Fornecedores
-        </a>
-    </div>
-    <div class="sidenav-item" routerLink="contrato" routerLinkActive="active">
-        <a>
-            <span class="material-icons mr-2 ml-2">group</span>
-            Destinações
+            <span class="material-icons mr-2 ml-1">exit_to_app</span>
+            Sair
         </a>
     </div>
 
