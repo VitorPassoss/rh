@@ -20,6 +20,9 @@ import { FormsModule } from '@angular/forms';
 import { MultiSelectModule } from 'primeng/multiselect';
 
 import { PasswordModule } from 'primeng/password';
+import { ChartModule } from 'primeng/chart';
+
+import { SplitterModule } from 'primeng/splitter';
 
 @NgModule({
   declarations: [],
@@ -39,7 +42,9 @@ import { PasswordModule } from 'primeng/password';
     PickListModule,
     FormsModule,
     MultiSelectModule,
-    PasswordModule
+    PasswordModule,
+    ChartModule,
+    SplitterModule
   ],
   exports:[
     TabViewModule,
@@ -56,8 +61,9 @@ import { PasswordModule } from 'primeng/password';
     PickListModule,
     FormsModule,
     MultiSelectModule,
-    PasswordModule
-    
+    PasswordModule,
+    ChartModule,
+    SplitterModule
   ],
   providers: [MessageService]
 

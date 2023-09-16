@@ -34,6 +34,7 @@ export class ListProducaoComponent implements OnInit {
   destinySelect:any 
 
   producaoFiltrada: any[] = this.producao;
+  active :boolean = false
 
 
   constructor(
@@ -60,6 +61,8 @@ onItemMovedToTarget(event: any) {
 }
 
 filtrarPorMesEAno(dataInput: string): void {
+  this.active = true
+
   const [yearInput, monthInput] = dataInput.split('-').map(Number); // Convertendo as partes para números
 
   this.producaoFiltrada = this.producao.filter(item => {
@@ -74,6 +77,7 @@ filtrarPorMesEAno(dataInput: string): void {
 
 
 limparFiltro(): void {
+  this.active = false
   this.producaoFiltrada = [...this.producao];
 }
 
@@ -181,6 +185,17 @@ startProcess(){
 
 submitProcess(){
   this.loadingService.present()
+
+  this.EstoqueItem.forEach((item:any)=>{
+    if(item.tipo_insumo.nome  = 'Leite'){
+      let total_milk = 0
+      this.selectedItems.map(producst => {
+        total_milk += producst.leite_processado
+      })
+      item.quantidade = total_milk
+    }
+})
+
 
   const payload = {
     status: "EA",

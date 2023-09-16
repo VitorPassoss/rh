@@ -21,6 +21,10 @@ export class ListInsumosComponent implements OnInit {
 
   entradaFiltrada: any[] = this.MateriaPrima;
 
+  active :boolean = false
+
+  dataSelect = ''
+
   constructor(
     public insumosService: InsumosService,
     public sharedService: SharedService,
@@ -46,20 +50,25 @@ export class ListInsumosComponent implements OnInit {
   }
 
   filtrarPorMesEAno(dataInput: string): void {
+    this.active = true
     const [yearInput, monthInput] = dataInput.split('-').map(Number); // Convertendo as partes para números
-  
+    
+
+    this.dataSelect = `${monthInput}/${yearInput}`
+
     this.entradaFiltrada = this.MateriaPrima.filter((item:any) => {
       const dataItem = new Date(item.created_at);
   
       const monthItem = dataItem.getMonth() + 1; // Os meses em JavaScript são base 0, por isso adicionamos 1.
       const yearItem = dataItem.getFullYear();
-  
+      
       return monthItem === monthInput && yearItem === yearInput;
     });
   }
   
   
   limparFiltro(): void {
+    this.active = false
     this.entradaFiltrada = [...this.MateriaPrima];
   }
   
@@ -161,6 +170,19 @@ submitForm() {
   return `${day}/${month}/${year}`;
 }
 
+
+generatePDF (){
+
+  let mainObject:any = this.entradaFiltrada
+
+  const payload = {
+    items : mainObject,
+    data : this.dataSelect
+  }
+
+  this.insumosService.generatePDF(payload)
+  
+}
 
 
 }

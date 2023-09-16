@@ -5,6 +5,10 @@
             <p>
                 <p-button (click)="showAddInsumo()" class="mr-3" label="Registrar entrada " icon="pi pi-plus"></p-button>
             </p>
+
+            <p>
+                <p-button (click)="generatePDF()" class="mr-3 "  styleClass="p-button-success" label="Gerar Relatorio " ></p-button>
+            </p>
             <p *ngIf="MaterialSelect.length > 0 ">
                 <p-button styleClass="p-button-success" label="Iniciar produção" icon="pi pi-plus"></p-button>
             </p>
@@ -22,12 +26,13 @@
     [rowsPerPageOptions]="[10, 25, 50]"
     (selectionChange)="onSelectionChange($event)"
 >
-    <ng-template pTemplate="caption">
-        <div class="flex mouth-tab">
-            <input type="month" #dataInput (change)="filtrarPorMesEAno(dataInput.value)" >
-            <p-button styleClass="p-button-danger" (click)="limparFiltro()">Limpar Filtro</p-button>
-        </div>
-    </ng-template>
+<ng-template pTemplate="caption">
+    <div class="flex mouth-tab">
+        <input type="month" #dataInput (change)="filtrarPorMesEAno(dataInput.value)">
+        <p-button [styleClass]="active ? 'p-button-success':'p-button-secondary'" (click)="limparFiltro()">Limpar Filtro</p-button>
+    </div>
+</ng-template>
+
 
     <ng-template pTemplate="header">
         <tr>
@@ -48,7 +53,7 @@
             <td>{{ insumo.tipo_insumo.nome }}</td>
             <td>{{ insumo.quantidade }}/{{ insumo.tipo_insumo.grandeza }}</td>
             <td>{{ insumo.tipo_insumo.grandeza }}</td>
-            <td>{{ insumo.valor }}R$</td>
+            <td>R${{ insumo.valor }}</td>
         </tr>
     </ng-template>
     <ng-template pTemplate="emptymessage">

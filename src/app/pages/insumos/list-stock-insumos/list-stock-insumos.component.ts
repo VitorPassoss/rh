@@ -129,13 +129,23 @@ onItemMovedToSource(event: any) {
 
   submitProcess(){
     this.loadingService.present()
+    
+    this.EstoqueItem.forEach((item:any)=>{
+        if(item.tipo_insumo.nome  = 'Leite'){
+          let total_milk = 0
+          this.selectedItems.map(producst => {
+            total_milk += producst.leite_processado
+          })
+          item.quantidade = total_milk
+        }
+    })
 
     const payload = {
       status: "EA",
       insumos: this.EstoqueItem.map(item => ({
             quantidade: item.quantidade,
             tipo_insumo: item.tipo_insumo.id,
-            valor: item.valor  // ou qualquer outro campo relevante
+            valor: item.valor 
         })),
       produtos: this.selectedItems.map(item => ({
             produto: item.id, 

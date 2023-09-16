@@ -12,6 +12,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { ProducaoModule } from './pages/producao/producao.module'
 import { SaidasModule } from './pages/saidas/saidas.module';
 import { LoginComponent } from './pages/login/login.component';
+import { ChartModule } from 'primeng/chart';
+import { HomeComponent } from './pages/home/home/home.component';
+import { HomeModule } from './pages/home/home.module';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,7 +31,8 @@ import { LoginComponent } from './pages/login/login.component';
     TableModule,
     HttpClientModule,
     ProducaoModule,
-    SaidasModule
+    SaidasModule,
+    HomeModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -11,7 +11,7 @@ import { JwtAuthGuard } from './guards/jwt-auth.guard';
 const routes: Routes = [
   { 
     path: '', canActivate: [JwtAuthGuard], component: MainComponent, children: [
-      {path: '', component: HomeComponent, },
+      {path: 'painel', component: HomeComponent, },
       {path: 'insumos', component: MainInsumosComponent},
       {path: 'producao', component: ProducaoComponent},
       {path: 'saidas', component: SaidasHomeComponent}

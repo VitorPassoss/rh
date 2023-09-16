@@ -20,12 +20,16 @@
     dataKey="id"
 
 >
+
 <ng-template pTemplate="caption">
     <div class="flex mouth-tab">
-        <input type="month" #dataInput (change)="filtrarPorMesEAno(dataInput.value)" >
-        <p-button styleClass="p-button-danger" (click)="limparFiltro()">Limpar Filtro</p-button>
+        <input type="month" #dataInput (change)="filtrarPorMesEAno(dataInput.value)">
+        <p-button [styleClass]="active ? 'p-button-success':'p-button-secondary'" (click)="limparFiltro()">Limpar Filtro</p-button>
     </div>
 </ng-template>
+
+
+
     <ng-template pTemplate="header" >
         <tr >
             <th style="width: 5%"></th>

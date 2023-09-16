@@ -1,0 +1,23 @@
+div.struct {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.container {
+    width: 60vw;
+    height: 60vh;
+    padding: 5%;
+    margin-top: 5%;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 1px 1px 15px 5px rgb(230, 230, 230);
+}
+
+
+
+
+.circle p-chart {
+    width: 250px !important;
+    height: 250px !important;
+}
