@@ -4,6 +4,6 @@
 
 export const environment = {
     production: true,
-    urlApi: 'https://www.uirapuruapi.online/api/v1',
+    urlApi: 'https://uirapuruapi.online/api/v1',
 };
   
