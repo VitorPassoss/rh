@@ -36,7 +36,7 @@ export class ListInsumosComponent implements OnInit {
 
     this.entradaForm = this.formBuilder.group({
       fornecedor: [null],
-      tipo_insumo: [null],
+      tipo_insumo: ['Kg'],
       quantidade: [null],
       valor: [null]
     })

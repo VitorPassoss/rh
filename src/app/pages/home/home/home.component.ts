@@ -30,21 +30,40 @@ export class HomeComponent implements OnInit {
   data: any;
   options: any;
 
+  producao:any = []
+
+  totalLeiteProcessado:number = 0
   ngOnInit() {
+    this.getProducao()
     forkJoin([
         this.insumoService.getEntradas(),
         this.producaoService.getProducao(),
         this.producaoService.getProdutos(),
-        this.saidasService.getAllSaidas()
-    ]).subscribe(results => {
+        this.saidasService.getAllSaidas(),
+
+    ]).subscribe(async (results) => {
         this.quantidadeEntradas = results[0].length;
         this.quantidadeProducao = results[1].length;
         this.quantidadeProdutos = results[2].length;
         this.quantidadeSaidas = results[3].length;
         this.constructorGraph();
+         this.infoPanel()
     });
+
+
 }
 
+
+async infoPanel(){
+    console.log(this.producao)
+
+    this.producao.forEach((item:any) => {
+        item.produtos.forEach((product:any)=>{
+            this.totalLeiteProcessado += Number(product.leite_processado)
+        })
+    });  
+    
+}
 
  getEntradas(){
      this.insumoService.getEntradas().subscribe({
@@ -58,6 +77,8 @@ export class HomeComponent implements OnInit {
 getProducao(){
     this.producaoService.getProducao().subscribe({
         next: (res)=>{
+            this.producao = res
+            
             this.quantidadeProducao = res.length
         }
     })

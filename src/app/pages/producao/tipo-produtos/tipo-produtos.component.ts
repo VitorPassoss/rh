@@ -24,7 +24,7 @@ export class TipoProdutosComponent implements OnInit {
   ){
     this.tipoProdutoForm = this.formBuilder.group({
       nome: [null],
-      grandeza: [null],
+      grandeza: ['Kg'],
       codigo: [null],
     })
   }

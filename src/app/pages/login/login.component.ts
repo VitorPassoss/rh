@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
+import { SharedService } from 'src/app/shared/shared.service';
 
 @Component({
   selector: 'app-login',
@@ -21,6 +22,7 @@ export class LoginComponent implements OnInit {
     private router: Router,
     private httpClient: HttpClient,
     private formBuilder: FormBuilder,
+    private sharedService: SharedService
 
   ){
     this.loginForm = this.formBuilder.group({
@@ -41,7 +43,7 @@ export class LoginComponent implements OnInit {
                   
         })
         .catch(async (error) => {
-          console.error(error)
+          this.sharedService.showToastError("Falha ao fazer login, verifique suas credenciais!.")
         });
     }
   }

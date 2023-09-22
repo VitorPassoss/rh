@@ -6,9 +6,9 @@ div.struct {
 
 .container {
     width: 60vw;
-    height: 60vh;
-    padding: 5%;
-    margin-top: 5%;
+    height: 65vh;
+    padding: 2%;
+    margin-top: 0%;
     background-color: white;
     border-radius: 8px;
     box-shadow: 1px 1px 15px 5px rgb(230, 230, 230);
@@ -21,3 +21,15 @@ div.struct {
     width: 250px !important;
     height: 250px !important;
 }
+
+
+.panel-info{
+    width: 60vw;
+}
+
+
+.info {
+    text-align: center;
+    font-size: 40px;
+}
+

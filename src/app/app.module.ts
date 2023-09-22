@@ -15,6 +15,8 @@ import { LoginComponent } from './pages/login/login.component';
 import { ChartModule } from 'primeng/chart';
 import { HomeComponent } from './pages/home/home/home.component';
 import { HomeModule } from './pages/home/home.module';
+import { BlockLoadingComponent } from './shared/block-loading/block-loading.component';
+import { ToastModule } from 'primeng/toast';
 
 @NgModule({
   declarations: [
@@ -32,7 +34,9 @@ import { HomeModule } from './pages/home/home.module';
     HttpClientModule,
     ProducaoModule,
     SaidasModule,
-    HomeModule
+    HomeModule,
+    BlockLoadingComponent,
+    ToastModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -23,7 +23,7 @@ import { PasswordModule } from 'primeng/password';
 import { ChartModule } from 'primeng/chart';
 
 import { SplitterModule } from 'primeng/splitter';
-
+import { CardModule } from 'primeng/card';
 @NgModule({
   declarations: [],
   imports: [
@@ -44,7 +44,8 @@ import { SplitterModule } from 'primeng/splitter';
     MultiSelectModule,
     PasswordModule,
     ChartModule,
-    SplitterModule
+    SplitterModule,
+    CardModule
   ],
   exports:[
     TabViewModule,
@@ -63,7 +64,8 @@ import { SplitterModule } from 'primeng/splitter';
     MultiSelectModule,
     PasswordModule,
     ChartModule,
-    SplitterModule
+    SplitterModule,
+    CardModule
   ],
   providers: [MessageService]
 
