@@ -12,7 +12,7 @@ export class ListTipoInsumoComponent implements OnInit {
   visible: boolean = false;
   insumos: any[] = []
   insumoForm: FormGroup
-
+  grandezas:any[] = []
   constructor(
     public insumosService: InsumosService,
     public sharedService: SharedService,
@@ -23,6 +23,7 @@ export class ListTipoInsumoComponent implements OnInit {
       nome: [null],
       grandeza: [null]
     })
+   
   }
 
   showAddTipo() {
@@ -31,6 +32,11 @@ export class ListTipoInsumoComponent implements OnInit {
 
   ngOnInit() {
     this.getInsumos()
+    this.grandezas = [
+      'Kg' ,
+      'L' ,
+      'Un' 
+    ]    
   }
 
   async getInsumos(){

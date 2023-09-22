@@ -32,15 +32,12 @@ label{
     font-size: 12px;
 }
 
-.qnt {
+::ng-deep .qnt {
     display: flex;
     flex-direction: column;
     
-    input {
-        border-top: none;
-        border-left: none;
-        border-right: none;
-        border-bottom: 1px solid gray;
+    .p-inputtext {
+        padding: 0.15rem 0.10rem !important;
     }
 }
 

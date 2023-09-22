@@ -40,7 +40,8 @@ header="Registro de saida" [(visible)]="quitModal" [modal]="true"  [style]="{ wi
     
     <div class="flex flex-column gap-2">
         <label htmlFor="username">Quantidade</label>
-        <input value="{{ productSelect.quantidade }}" [(ngModel)]="saida.quantidade"  pInputText />
+        <p-inputNumber  [style]="{ width: '100%'}"  type="number" class="input-number" [(ngModel)]="saida.quantidade" [minFractionDigits]="3"  tinputId="minmax" mode="decimal" [min]="0" > </p-inputNumber>
+
     </div>
 
     <div class="col-10">

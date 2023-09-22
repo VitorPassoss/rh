@@ -75,7 +75,9 @@ header="Criar lotes de produto" [(visible)]="visible" [modal]="true" (onHide)="c
                                 <td>{{ item.tipo_insumo.nome }}</td>
                                 <td>{{ item.quantidade_estoque }}/{{ item.tipo_insumo.grandeza}}</td>
                                 <td *ngIf="item.tipo_insumo.nome != 'Leite'">
-                                    <input [(ngModel)]="item.quantidade" name="quantidade"  type="number" class="input-number">/{{ item.tipo_insumo.grandeza}}
+                                    <p-inputNumber  type="number" class="input-number" [(ngModel)]="item.quantidade" name="quantidade" [minFractionDigits]="3"  tinputId="minmax" mode="decimal" [min]="0" > </p-inputNumber>/{{ item.tipo_insumo.grandeza}}
+
+
                                 </td>
                             </tr>
                         </ng-template>
@@ -109,7 +111,7 @@ header="Criar lotes de produto" [(visible)]="visible" [modal]="true" (onHide)="c
                                     <label for="qnt" >Quantidade leite(Litro):</label>
                                 </div>
                                 <div>
-                                    <input [(ngModel)]="item.leite_processado" type="number" name="quantidadeLeite">
+                                    <p-inputNumber  [(ngModel)]="item.leite_processado" type="number" name="quantidadeLeite" [minFractionDigits]="3"  tinputId="minmax" mode="decimal" [min]="0" > </p-inputNumber>
                                 </div>
                             </div>
                         </div>

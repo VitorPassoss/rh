@@ -14,6 +14,7 @@ export class TipoProdutosComponent implements OnInit {
   visible: boolean = false;
   tipoProdutoForm: FormGroup
   productItems:any[] = []
+  grandezas:any[] = []
 
   constructor(
     private formBuilder: FormBuilder,
@@ -30,6 +31,11 @@ export class TipoProdutosComponent implements OnInit {
 
   ngOnInit() {
     this.getProdutos()
+    this.grandezas = [
+      'Kg' ,
+      'L' ,
+      'Un' 
+    ]   
   }
 
   showAddtype(){

@@ -38,7 +38,6 @@ export class ListStockInsumosComponent implements OnInit {
 
   ngOnInit() {
     this.getEstoque()
-    
     this.cdr.markForCheck();
     this.getProdutos()
     this.EstoqueItem = []
@@ -71,6 +70,10 @@ onItemMovedToSource(event: any) {
       {
         next: async (res:any) => {
           this.Estoque = res
+          this.Estoque.forEach((item:any)=>{
+            item.quantidade_estoque = item.quantidade  
+          })
+          
           
                     
         },
@@ -114,10 +117,7 @@ onItemMovedToSource(event: any) {
           this.EstoqueItem.push(item)
       }
     })
-    this.EstoqueItem.forEach((item)=>{
-      item.quantidade_estoque = item.quantidade  
-    })
-    
+   
     this.visible = true;
    
   }

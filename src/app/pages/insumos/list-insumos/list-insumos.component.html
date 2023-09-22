@@ -90,14 +90,15 @@
             <div class="col-6">
                 <div class="flex flex-column gap-2">
                     <label htmlFor="Quantidade">Quantidade</label>
-                    <input  formControlName="quantidade" [style]="{width: '100%'}" type="number" pInputText id="Quantidade"  />
+                    <p-inputNumber [style]="{width: '100%'}" formControlName="quantidade" [minFractionDigits]="3"  tinputId="minmax" mode="decimal" [min]="0" > </p-inputNumber>
+
                 </div>
             </div>
             
             <div class="col-6">
                 <div class="flex flex-column gap-2">
                     <label htmlFor="Valor">Valor</label>
-                    <p-inputNumber formControlName="valor" [style]="{width: '100%'}" mode="currency" inputId="currency-bra" currency="BRL" locale="pt-BR"> </p-inputNumber>
+                    <p-inputNumber formControlName="valor" [style]="{width: '100%'}" mode="currency"  inputId="currency-bra" currency="BRL" locale="pt-BR"> </p-inputNumber>
                 </div>
             </div>
     
