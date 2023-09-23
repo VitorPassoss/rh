@@ -48,4 +48,12 @@ export class ProducaoService {
     return this.http.post<any>(`${environment.urlApi}/saidas/`, data)
   }
 
+  deleteProduto(id:number){
+    return this.http.delete<any>(`${environment.urlApi}/producao/produtos/${id}`)
+  }
+
+  updateProduto(id:number, data:any){
+    return this.http.put<any>(`${environment.urlApi}/producao/produtos/${id}`, data)
+  }
+
 }

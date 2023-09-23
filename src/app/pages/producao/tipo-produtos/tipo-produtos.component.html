@@ -23,6 +23,7 @@
             <th style="width:10%">Codigo</th>
             <th style="width:10%">Nome</th>
             <th style="width:10%">Grandeza</th>
+            <th style="width:10%; text-align: center;">Ações</th>
             <th style="width:60%"></th>
         </tr>
     </ng-template>
@@ -31,7 +32,9 @@
             <td>{{ product.codigo }}</td>
            <td>{{ product.nome }}</td>
            <td>{{ product.grandeza }}</td>
-           <td></td>
+           <td style="text-align: center;" >
+            <p-button (click)="showEdit(product)"  icon="pi pi-pencil" class="mr-2" styleClass="p-button-rounded p-button-info"></p-button>
+        </td>
             <td></td>
         </tr>
     </ng-template>

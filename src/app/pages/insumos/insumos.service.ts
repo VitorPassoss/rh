@@ -44,6 +44,22 @@ export class InsumosService {
   }
 
 
+  deleteFornecedor(id:number){
+    return this.http.delete<any>(`${environment.urlApi}/entrada/fornecedores/${id}`)
+  }
+
+  updateFornecedor(id:number, data:any){
+    return this.http.put<any>(`${environment.urlApi}/entrada/fornecedores/${id}`, data)
+  }
+
+  deleteInsumo(id:number){
+    return this.http.delete<any>(`${environment.urlApi}/entrada/insumos/${id}`)
+  }
+
+  updateInsumo(id:number, data:any){
+    return this.http.put<any>(`${environment.urlApi}/entrada/insumos/${id}`, data)
+  }
+
   generatePDF(detailProduct:any){
  
     const insumos = detailProduct.items

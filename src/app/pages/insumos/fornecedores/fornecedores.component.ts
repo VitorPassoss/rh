@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+        import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { SharedService } from 'src/app/shared/shared.service';
 import { InsumosService } from '../insumos.service';
+import { LoadingService } from 'src/app/shared/services/loading.service';
 
 @Component({
   selector: 'app-fornecedores',
@@ -13,12 +14,14 @@ export class FornecedoresComponent implements OnInit {
   fornecedores: any[] = []
   fornecedorForm: FormGroup
   visible: boolean = false;
+  editingFornecedor: any = null;
+
 
   constructor(
     public insumosService: InsumosService,
     private formBuilder: FormBuilder,
-    public sharedService: SharedService
-
+    public sharedService: SharedService,
+    public loadingService: LoadingService
   ){
     this.fornecedorForm = this.formBuilder.group({
       nome: [null],
@@ -30,6 +33,14 @@ export class FornecedoresComponent implements OnInit {
   ngOnInit() {
     this.getFornecedores()
   }
+
+
+  showEditFornecedor(fornecedor: any) {
+    this.editingFornecedor = fornecedor;
+    this.fornecedorForm.patchValue(fornecedor); // popula o formulário
+    this.visible = true;
+  }
+  
 
   async getFornecedores(){
     this.insumosService.getFornecedores().subscribe(
@@ -46,25 +57,58 @@ export class FornecedoresComponent implements OnInit {
     this.visible = true;
   }
 
-  submitForm() {
-    if (this.fornecedorForm.valid) { 
-        const formData = this.fornecedorForm.value; // get the form data
+  async delete(id:number){
+    this.loadingService.present()
+    this.insumosService.deleteFornecedor(id).subscribe(
+      {
+        next: async (res) => {
+          this.loadingService.dismiss()
+          this.sharedService.showToastSuccess('Fornecedor deletado com sucesso')
+          this.getFornecedores()
+        },
+        error: async (err) => {
+          this.loadingService.dismiss()
+          this.sharedService.showToastError('Erro ao deletar fornecedor: '+ err)
+        }
+      }
+    )
   
-        this.insumosService.createFornecedor(formData).subscribe({
+  
+  }
+
+  submitForm() {
+    if (this.fornecedorForm.valid) {
+      const formData = this.fornecedorForm.value;
+  
+      if (this.editingFornecedor) { // If we are editing
+        this.insumosService.updateFornecedor(this.editingFornecedor.id, formData).subscribe({
           next: async () => {
             this.getFornecedores()
+            this.sharedService.showToastSuccess("Fornecedor atualizado com sucesso");
+            this.visible = false;
+            this.editingFornecedor = null;
+            this.fornecedorForm.reset();
+          },
+          error: async () => {
+            this.sharedService.showToastError("Ocorreu algum problema na atualização");
+          }
+        });
+      } else { 
+        this.insumosService.createFornecedor(formData).subscribe({
+          next: async () => {
+            this.getFornecedores();
             this.sharedService.showToastSuccess("Fornecedor criado com sucesso");
-            this.visible = false
+            this.visible = false;
             this.fornecedorForm.reset();
           },
           error: async () => {
             this.sharedService.showToastError("Ocorreu algum problema no registro");
           }
-        }
-            
-        );
+        });
+      }
     } else {
-        this.sharedService.showToastError("Insira valores validos");
+      this.sharedService.showToastError("Insira valores válidos");
     }
   }
+  
 }

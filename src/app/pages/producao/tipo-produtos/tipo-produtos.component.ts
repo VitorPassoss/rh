@@ -15,6 +15,7 @@ export class TipoProdutosComponent implements OnInit {
   tipoProdutoForm: FormGroup
   productItems:any[] = []
   grandezas:any[] = []
+  editing: any = null;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -56,21 +57,66 @@ export class TipoProdutosComponent implements OnInit {
 
   }
 
+  showEdit(item: any) {
+    this.editing = item;
+    this.tipoProdutoForm.patchValue(item); // popula o formulário
+    this.visible = true;
+  }
+
+
+  async delete(id:number){
+    this.loadingService.present()
+    this.producaoService.deleteProduto(id).subscribe(
+      {
+        next: async (res) => {
+          this.loadingService.dismiss()
+          this.sharedService.showToastSuccess('Item deletado com sucesso')
+          this.getProdutos()
+        },
+        error: async (err) => {
+          this.loadingService.dismiss()
+          this.sharedService.showToastError('Erro ao deletar Item: '+ err)
+        }
+      }
+    )
+  
+  
+  }
 
   submitForm() {
     this.loadingService.present()
     if (this.tipoProdutoForm.valid) { 
         const formData = this.tipoProdutoForm.value; // get the form data
-        this.producaoService.createTypeProduct(formData).subscribe(
-          {
-            next: async(res)=>{
-              this.loadingService.dismiss()
-              this.sharedService.showToastSuccess("Tipo de produto criado com sucesso");
-              this.visible = false
+        
+        if (this.editing) { 
+          this.producaoService.updateProduto(this.editing.id, formData).subscribe({
+            next: async () => {
               this.getProdutos()
+              this.sharedService.showToastSuccess("Item atualizado com sucesso");
+              this.visible = false;
+              this.editing = null;
+              this.tipoProdutoForm.reset();
+              this.loadingService.dismiss()
+            },
+            error: async () => {
+              this.sharedService.showToastError("Ocorreu algum problema na atualização");
+              this.loadingService.dismiss()
             }
-          }
-        )
+          });
+        }else{
+          this.producaoService.createTypeProduct(formData).subscribe(
+            {
+              next: async(res)=>{
+                this.loadingService.dismiss()
+                this.sharedService.showToastSuccess("Tipo de produto criado com sucesso");
+                this.visible = false
+                this.getProdutos()
+              }
+            }
+          )
+        }
+        
+       
         
     } else {
       this.sharedService.showToastError("Ocorreu algum problema no registro");

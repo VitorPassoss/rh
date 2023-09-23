@@ -18,4 +18,13 @@ export class SaidasService {
     return this.http.get<any>(`${environment.urlApi}/saidas/`)
   }
 
+  deleteDestinacao(id:number){
+    return this.http.delete<any>(`${environment.urlApi}/saidas/destinacao/${id}`)
+  }
+
+  updateDestinacao(id:number, data:any){
+    return this.http.put<any>(`${environment.urlApi}/saidas/destinacao/${id}`, data)
+  }
+
+
 }
