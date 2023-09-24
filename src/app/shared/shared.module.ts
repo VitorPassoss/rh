@@ -24,6 +24,9 @@ import { ChartModule } from 'primeng/chart';
 
 import { SplitterModule } from 'primeng/splitter';
 import { CardModule } from 'primeng/card';
+import { ChipModule } from 'primeng/chip';
+
+
 @NgModule({
   declarations: [],
   imports: [
@@ -45,7 +48,8 @@ import { CardModule } from 'primeng/card';
     PasswordModule,
     ChartModule,
     SplitterModule,
-    CardModule
+    CardModule,
+    ChipModule
   ],
   exports:[
     TabViewModule,
@@ -65,7 +69,8 @@ import { CardModule } from 'primeng/card';
     PasswordModule,
     ChartModule,
     SplitterModule,
-    CardModule
+    CardModule,
+    ChipModule
   ],
   providers: [MessageService]
 

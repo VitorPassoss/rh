@@ -36,6 +36,13 @@
 
 <p-dialog  [baseZIndex]="100"
 header="Registro de saida" [(visible)]="quitModal" [modal]="true"  [style]="{ width: '30vw', height:'350px'}" [draggable]="true" [resizable]="true">
+
+
+    <div class="item-choice">
+        {{ productSelect?.produto?.nome }}
+    </div>
+
+
     <p-dropdown optionValue="id"  [(ngModel)]="saida.destinacao" [style]="{ width: '100%'}"  [options]="destinacoesList"  placeholder="Selecione um destino" optionLabel="nome" ></p-dropdown>
     
     <div class="flex flex-column gap-2">
