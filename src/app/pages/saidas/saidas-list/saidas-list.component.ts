@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SaidasService } from '../saidas.service';
+import { LoadingService } from 'src/app/shared/services/loading.service';
 
 @Component({
   selector: 'app-saidas-list',
@@ -11,7 +12,8 @@ export class SaidasListComponent implements OnInit {
   saidas:any[] = []
 
   constructor(
-    public saidasService: SaidasService
+    public saidasService: SaidasService,
+    public loadingService: LoadingService
   ){}
 
   ngOnInit(): void {
@@ -19,9 +21,13 @@ export class SaidasListComponent implements OnInit {
   }
 
   getSaidas(){
+    this.loadingService.present()
+
     this.saidasService.getAllSaidas().subscribe({
       next: (res) => {
         this.saidas = res
+        this.loadingService.dismiss()
+
       }
     })
   }
