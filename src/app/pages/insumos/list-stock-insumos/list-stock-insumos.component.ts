@@ -128,8 +128,11 @@ onItemMovedToSource(event: any) {
   }
 
   submitProcess(){
+    if(this.selectedItems.length == 0 || this.EstoqueItem.length == 0){
+      return  this.sharedService.showToastError("Selecione pelo menos um produto e um insumo");
+    }
+
     this.loadingService.present()
-    
     this.EstoqueItem.forEach((item:any)=>{
         if(item.tipo_insumo.nome  = 'Leite'){
           let total_milk = 0
@@ -154,7 +157,7 @@ onItemMovedToSource(event: any) {
           }))
     }
 
-    this.producaoService.startProducao(payload).subscribe(
+    return this.producaoService.startProducao(payload).subscribe(
       {
         next: async (res) => {
           this.loadingService.dismiss()

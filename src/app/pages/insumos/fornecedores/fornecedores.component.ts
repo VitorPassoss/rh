@@ -1,5 +1,5 @@
         import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { SharedService } from 'src/app/shared/shared.service';
 import { InsumosService } from '../insumos.service';
 import { LoadingService } from 'src/app/shared/services/loading.service';
@@ -24,9 +24,10 @@ export class FornecedoresComponent implements OnInit {
     public loadingService: LoadingService
   ){
     this.fornecedorForm = this.formBuilder.group({
-      nome: [null],
+      nome: [null, Validators.required],
       cpf_cnpj: [null],
-      razao_social: [null]
+      razao_social: [null],
+      contato: [null]
     })
   }
 
@@ -107,7 +108,7 @@ export class FornecedoresComponent implements OnInit {
         });
       }
     } else {
-      this.sharedService.showToastError("Insira valores válidos");
+      this.sharedService.showToastError("Insira um nome valido");
     }
   }
   

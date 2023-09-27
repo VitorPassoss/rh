@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { SharedService } from 'src/app/shared/shared.service';
 import { InsumosService } from '../insumos.service';
 import { LoadingService } from 'src/app/shared/services/loading.service';
@@ -24,8 +24,8 @@ export class ListTipoInsumoComponent implements OnInit {
 
   ){
     this.insumoForm = this.formBuilder.group({
-      nome: [null],
-      grandeza: ['Kg']
+      nome: [null, Validators.required],
+      grandeza: ['Kg', Validators.required]
     })
    
   }
@@ -114,6 +114,8 @@ export class ListTipoInsumoComponent implements OnInit {
       }
 
      
+    }else{
+      this.sharedService.showToastError("Prencha os valores corretamente.");
     }
   }
 

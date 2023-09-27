@@ -2,7 +2,7 @@ import { Component, OnInit} from '@angular/core';
 
 import { SharedService } from 'src/app/shared/shared.service';
 import { InsumosService } from '../insumos.service';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { LoadingService } from 'src/app/shared/services/loading.service';
 
 @Component({
@@ -35,10 +35,10 @@ export class ListInsumosComponent implements OnInit {
   ){
 
     this.entradaForm = this.formBuilder.group({
-      fornecedor: [null],
+      fornecedor: [null, Validators.required],
       tipo_insumo: ['Kg'],
-      quantidade: [null],
-      valor: [null]
+      quantidade: [null, Validators.required],
+      valor: [0.00]
     })
   }
 
@@ -152,7 +152,8 @@ submitForm() {
           
       );
   } else {
-      this.sharedService.showToastError("Form is not valid");
+      this.loadingService.dismiss()
+      this.sharedService.showToastError("Preencha os campos corretamente");
   }
 }
 
