@@ -6,6 +6,10 @@
             <p>
                 <p-button  (click)="startProcess()"  styleClass="p-button-success" label="Iniciar produção" icon="pi pi-plus"></p-button>
             </p>
+
+            <p>
+                <p-button (click)="generatePDF()" class="ml-3 "  styleClass="p-button-success" label="Gerar Relatorio " ></p-button>
+            </p>
         </div>
     </p-panel>
 </div>
@@ -22,10 +26,10 @@
     <ng-template pTemplate="header">
         <tr>
             <th style="width:5%">Data</th>
-            <th style="width:10%">Nome Material</th>
-            <th style="width:10%">Quantidade</th>
-            <th style="width:10%">Unidade de medida</th>
-            <th style="width:50%"></th>
+            <th style="width:20%">Nome Material</th>
+            <th style="width:20%">Quantidade</th>
+            <th style="width:20%">Unidade de medida</th>
+            <th style="width:30%"></th>
         </tr>
     </ng-template>
     <ng-template pTemplate="body" let-item>
@@ -43,7 +47,7 @@
 
 
 <p-dialog  [baseZIndex]="100"
-header="Criar lotes de produto" [(visible)]="visible" [modal]="true" (onHide)="closeDialog()" [style]="{ width: '55vw' }" [draggable]="true" [resizable]="true">
+header="Criar lotes de produto" [(visible)]="visible" [modal]="true" (onHide)="closeDialog()" [style]="{ width: '75vw' }" [draggable]="true" [resizable]="true">
     <p-multiSelect (onChange)="updateItem()" [options]="Estoque" [(ngModel)]="EstoqueItem" defaultLabel="Selecione mais insumos" optionLabel="tipo_insumo.nome" display="chip"></p-multiSelect>
     <form >
 
@@ -57,7 +61,7 @@ header="Criar lotes de produto" [(visible)]="visible" [modal]="true" (onHide)="c
                         [tableStyle]="{ 'min-width': '100%' }"
                         [rowsPerPageOptions]="[5, 10, 15]"
                         [scrollable]="true" 
-                        scrollHeight="300px"
+                        scrollHeight="350px"
                         
                         >
                         <ng-template pTemplate="header">

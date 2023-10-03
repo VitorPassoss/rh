@@ -16,7 +16,7 @@ export class ListInsumosComponent implements OnInit {
   insumos: any[] = []
   fornecedores: any[] = []
   visible: boolean = false;
-
+  quantidadeGrandeza:any = 0
   entradaForm: FormGroup
 
   entradaFiltrada: any[] = this.MateriaPrima;
@@ -85,6 +85,7 @@ export class ListInsumosComponent implements OnInit {
         },
         error: async (err:any) => {
           console.log(err)
+          this.loadingService.dismiss()
           this.sharedService.showToastError("Falha ao carregar registros")
         }
       }
@@ -183,6 +184,23 @@ generatePDF (){
 
   this.insumosService.generatePDF(payload)
   
+}
+
+
+calculateTotal(event: any) {
+  const form = this.entradaForm.value;
+  const inputValue = parseFloat(event); // Converte o valor de entrada para número decimal
+  const quantidade = parseFloat(this.entradaForm.value.quantidade); // Converte a quantidade para número decimal
+  console.log(quantidade);
+
+  if (quantidade > 0 && inputValue > 0) {
+    const valor_pago = inputValue * quantidade;
+    this.entradaForm.patchValue({ valor: valor_pago }); // Atualiza apenas o controle 'valor' no formulário com o valor calculado
+    console.log(this.entradaForm.value);
+  }else{
+    this.entradaForm.patchValue({ valor: 0.00 }); // Atualiza apenas o controle 'valor' no formulário com o valor calculado
+
+  }
 }
 
 

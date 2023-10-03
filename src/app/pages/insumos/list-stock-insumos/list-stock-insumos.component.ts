@@ -197,5 +197,23 @@ onItemMovedToSource(event: any) {
 
 
 
+generatePDF (){
+
+  let mainObject:any = this.Estoque
+  const currentDate = new Date(); // Obter a data atual
+
+
+  const payload = {
+    items : mainObject,
+    data : currentDate
+  }
+
+  this.insumosService.generatePdfStock(payload)
+  
+}
+
+
+
+
 
 }

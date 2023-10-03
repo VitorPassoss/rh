@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { LoadingService } from 'src/app/shared/services/loading.service';
 import { SharedService } from 'src/app/shared/shared.service';
 import { ProducaoService } from '../producao.service';
+import { InsumosService } from '../../insumos/insumos.service';
 
 @Component({
   selector: 'app-produtos-estoque',
@@ -33,7 +34,8 @@ export class ProdutosEstoqueComponent implements OnInit{
   constructor(
     public loadingService:LoadingService,
     public sharedService: SharedService,
-    public producaoService: ProducaoService
+    public producaoService: ProducaoService,
+    public insumosService: InsumosService
 
   ){
   }
@@ -75,6 +77,23 @@ export class ProdutosEstoqueComponent implements OnInit{
       }
     })
   }
+
+
+  generatePDF (){
+
+    let mainObject:any = this.productsStock
+    const currentDate = new Date(); // Obter a data atual
+  
+  
+    const payload = {
+      items : mainObject,
+      data : currentDate
+    }
+  
+    this.insumosService.generatePdfProduct(payload)
+    
+  }
+  
 
 
 }

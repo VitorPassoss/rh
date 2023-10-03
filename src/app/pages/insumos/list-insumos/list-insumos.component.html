@@ -91,6 +91,14 @@
             
             <div class="col-6">
                 <div class="flex flex-column gap-2">
+                    <label htmlFor="Quantidade">Valor por grandeza</label>
+                    <p-inputNumber      (onInput)="calculateTotal($event.value)"           [style]="{width: '100%'}"  [minFractionDigits]="3"  tinputId="minmax" mode="decimal" [min]="0" > </p-inputNumber>
+
+                </div>
+            </div>
+
+            <div class="col-6">
+                <div class="flex flex-column gap-2">
                     <label htmlFor="Valor">Valor</label>
                     <p-inputNumber formControlName="valor" [style]="{width: '100%'}" mode="currency"  inputId="currency-bra" currency="BRL" locale="pt-BR"> </p-inputNumber>
                 </div>

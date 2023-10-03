@@ -58,8 +58,11 @@
             <td *ngIf="item.status == 'F'">
                 Finalizado
             </td>
+        
+
+            
             <td>
-                <p-button *ngIf="item.status == 'EA'" class="mr-3" (click)="distroProducts(item)" label="Finalizar"></p-button>
+                <p-button *ngIf="item.status == 'EA'"  (click)="distroProducts(item)" label="Finalizar"></p-button>
             </td>
 
 
@@ -246,7 +249,7 @@ header="Criar lotes de produto" [(visible)]="visible" [modal]="true" (onHide)="c
 
 
 <p-dialog  [baseZIndex]="100"
-header="Criar lotes de produto" [(visible)]="distroProduct" [modal]="true" [style]="{ width: '55vw' }" [draggable]="true" [resizable]="true">
+header="Criar lotes de produto" [(visible)]="distroProduct" [modal]="true" [style]="{ width: '75vw' }" [draggable]="true" [resizable]="true">
     <form >
         <div class="grid">
                     <div class="col-12">
@@ -258,7 +261,7 @@ header="Criar lotes de produto" [(visible)]="distroProduct" [modal]="true" [styl
                         [tableStyle]="{ 'min-width': '100%' }"
                         [rowsPerPageOptions]="[5, 10, 15]"
                         [scrollable]="true" 
-                        scrollHeight="300px"
+                        scrollHeight="350px"
                         
                         >
                         <ng-template pTemplate="header">

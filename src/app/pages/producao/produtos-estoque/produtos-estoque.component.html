@@ -1,4 +1,17 @@
 
+<div class="">
+    <p-panel header="Materia Prima" >
+        <div class="flex">
+         
+            <p>
+                <p-button (click)="generatePDF()" class="mr-3 "  styleClass="p-button-success" label="Gerar Relatorio " ></p-button>
+            </p>
+         
+        </div>
+    </p-panel>
+</div>
+
+
 <p-table
     [value]="productsStock"
     [paginator]="true"
@@ -9,11 +22,11 @@
     <ng-template pTemplate="header">
         <tr>
             <th style="width:10%">Codigo</th>
-            <th style="width:10%">Nome</th>
+            <th style="width:15%">Nome</th>
             <th style="width:10%">Quantidade</th>
             <th style="width:10%">Grandeza</th>
             <th style="width:10%">Ação</th>
-            <th style="width:80%"></th>
+            <th style="width:60%"></th>
         </tr>
     </ng-template>
     <ng-template pTemplate="body" let-product>
