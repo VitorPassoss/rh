@@ -62,7 +62,7 @@ export class InsumosService {
 
   generatePDF(detailProduct:any){
  
-    const insumos = detailProduct.processs
+    const insumos = detailProduct.items
 
     let dataEmissao = detailProduct.data
 
