@@ -22,7 +22,7 @@ export class ListInsumosComponent implements OnInit {
   entradaFiltrada: any[] = this.MateriaPrima;
 
   active :boolean = false
-
+  calcOn: boolean = false
   dataSelect = ''
 
   constructor(
@@ -186,6 +186,13 @@ generatePDF (){
   
 }
 
+calcHandle(){
+  if(this.entradaForm.value.quantidade > 0){
+    this.calcOn = true
+  }else{
+    this.calcOn = false
+  }
+}
 
 calculateTotal(event: any) {
   const form = this.entradaForm.value;
@@ -199,9 +206,10 @@ calculateTotal(event: any) {
     console.log(this.entradaForm.value);
   }else{
     this.entradaForm.patchValue({ valor: 0.00 }); // Atualiza apenas o controle 'valor' no formulário com o valor calculado
-
   }
 }
+
+
 
 
 }
