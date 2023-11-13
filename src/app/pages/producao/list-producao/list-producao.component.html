@@ -49,7 +49,7 @@
                     class="p-button-text p-button-rounded p-button-plain"
                     [icon]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'"></button>
             </td>
-            <td>{{ formatToBrasiliaTimezone(item.created_at) }}</td>
+            <td>{{ item.created_at | date:'dd/MM/yyyy' : 'UTC'  }}</td>
             <td>{{ item.produtos.length }}</td>
             <td>{{ getTotalLeiteProcessado(item.produtos) }}L</td>
             <td>{{ item.quantidade ? item.quantidade : 'S/N' }}</td>
@@ -154,7 +154,7 @@
 </p-table>
 
 
-<p-dialog  [baseZIndex]="100"
+<p-dialog [maximizable]="true"  [baseZIndex]="100"
 header="Criar lotes de produto" [(visible)]="visible" [modal]="true" (onHide)="closeDialog()" [style]="{ width: '55vw' }" [draggable]="true" [resizable]="true">
     <p-multiSelect (onChange)="updateItem()" [options]="Estoque" [(ngModel)]="EstoqueItem" defaultLabel="Selecione mais insumos" optionLabel="tipo_insumo.nome" display="chip"></p-multiSelect>
     <form >

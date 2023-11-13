@@ -48,7 +48,7 @@
     <ng-template pTemplate="body" let-insumo>
         <tr>
                     
-            <td>{{ formatToBrasiliaTimezone(insumo.created_at) }}</td>
+            <td>{{ insumo.created_at | date:'dd/MM/yyyy' : 'UTC' }}</td>
             <td>{{ insumo.fornecedor.nome }}</td>
             <td>{{ insumo.tipo_insumo.nome }}</td>
             <td>{{ insumo.quantidade }}/{{ insumo.tipo_insumo.grandeza }}</td>
@@ -64,7 +64,7 @@
 </p-table>
 
 
-<p-dialog header="Registrar entrada de materia prima" [(visible)]="visible" [modal]="true" [style]="{ width: '40vw' }" [draggable]="true" [resizable]="true">
+<p-dialog [maximizable]="true" header="Registrar entrada de materia prima" [(visible)]="visible" [modal]="true" [style]="{ width: '40vw' }" [draggable]="true" [resizable]="true">
     <form [formGroup]="entradaForm">
         <div class="grid">
             <div class="col-6">
@@ -103,14 +103,22 @@
                     <p-inputNumber   formControlName="valor" [style]="{width: '100%'}" mode="currency"  inputId="currency-bra" currency="BRL" locale="pt-BR"> </p-inputNumber>
                 </div>
             </div>
-    
+
+            <div class="col-6">
+                <div class="flex flex-column gap-2">
+                    <label htmlFor="Valor">Data da entrada</label>
+
+                    <input  formControlName="created_at" type="date">
+
+                </div>
+            </div>
     
             <div class="col-10">
                     
             </div>
             <div class="col-2">
                 <p>
-<p-button (click)="submitForm()" class="mr-3" label="Salvar"></p-button>
+            <p-button (click)="submitForm()" class="mr-3" label="Salvar"></p-button>
                 </p>
             </div>
     

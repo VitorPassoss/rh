@@ -20,7 +20,7 @@
     <ng-template pTemplate="body" let-item let-expanded="expanded">
         <tr class="p-selectable-row"> 
  
-            <td>{{ formatToBrasiliaTimezone(item.dt_saida) }}</td>
+            <td>{{ item.dt_saida | date:'dd/MM/yyyy' : 'UTC'  }}</td>
             <td>{{ item.produto.nome }}</td>
             <td>{{ item.quantidade }}/{{ item.produto.grandeza }}</td>
             <td>{{ item.destinacao.nome }}</td>

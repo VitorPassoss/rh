@@ -34,7 +34,7 @@
     </ng-template>
     <ng-template pTemplate="body" let-item>
         <tr>            
-            <td>{{ formatToBrasiliaTimezone(item.created_at) }}</td>
+            <td>{{ item.created_at | date:'dd/MM/yyyy' : 'UTC'  }}</td>
             <td>{{ item.tipo_insumo.nome }}</td>
             <td>{{ item.quantidade }}/{{ item.tipo_insumo.grandeza }}</td>
             <td>{{ item.tipo_insumo.grandeza }}</td>

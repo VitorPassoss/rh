@@ -36,7 +36,7 @@ import { ToastModule } from 'primeng/toast';
     SaidasModule,
     HomeModule,
     BlockLoadingComponent,
-    ToastModule
+    ToastModule,    
   ],
   providers: [],
   bootstrap: [AppComponent]

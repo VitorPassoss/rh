@@ -29,16 +29,16 @@ export class ListInsumosComponent implements OnInit {
     public insumosService: InsumosService,
     public sharedService: SharedService,
     private formBuilder: FormBuilder,
-    public loadingService:LoadingService
-
-
+    public loadingService:LoadingService,
+    
   ){
 
     this.entradaForm = this.formBuilder.group({
       fornecedor: [null, Validators.required],
       tipo_insumo: ['Kg'],
       quantidade: [null, Validators.required],
-      valor: [0.00]
+      valor: [0.00],
+      created_at: [this.getFormattedDate(new Date()), Validators.required]  
     })
   }
 
@@ -47,6 +47,14 @@ export class ListInsumosComponent implements OnInit {
     this.getInsumos()
     this.getFornecedores()
     this.entradaFiltrada = [...this.MateriaPrima];
+  }
+
+  getFormattedDate(date: Date): string {
+    const year = date.getFullYear();
+    const month = ('0' + (date.getMonth() + 1)).slice(-2);
+    const day = ('0' + date.getDate()).slice(-2);
+
+    return `${year}-${month}-${day}`;
   }
 
   filtrarPorMesEAno(dataInput: string): void {
@@ -136,6 +144,8 @@ submitForm() {
   this.loadingService.present()
   if (this.entradaForm.valid) { // check if the form is valid
       const formData = this.entradaForm.value; // get the form data
+      console.log(formData)
+
 
       this.insumosService.createEntrada(formData).subscribe({
         next: async () => {
@@ -158,19 +168,6 @@ submitForm() {
   }
 }
 
-
-  formatToBrasiliaTimezone(dateStr: string): string {
-  const date = new Date(dateStr);
-
-  const offset = date.getTimezoneOffset() + 4 * 60; 
-  date.setTime(date.getTime() - offset * 60 * 1000);
-
-  const day = String(date.getUTCDate()).padStart(2, '0');
-  const month = String(date.getUTCMonth() + 1).padStart(2, '0');
-  const year = date.getUTCFullYear();
-
-  return `${day}/${month}/${year}`;
-}
 
 
 generatePDF (){

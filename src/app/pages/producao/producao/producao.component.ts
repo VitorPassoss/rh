@@ -18,17 +18,17 @@ export class ProducaoComponent {
 
 
   onTabChange(event:any) {
-    if (event.index === 0) { // Isso é um exemplo para a segunda aba. Ajuste o índice conforme necessário.
       this.listProducao.ngOnInit();
-    }
-    if (event.index === 1) { // Isso é um exemplo para a segunda aba. Ajuste o índice conforme necessário.
       this.produtoEstoque.ngOnInit();
-    }
-    if (event.index === 2) { // Isso é um exemplo para a segunda aba. Ajuste o índice conforme necessário.
       this.tipoInsumos.ngOnInit();
     }
 
-    
-  }
+
+    onChange(event: any) {
+      this.listProducao.ngOnInit();
+      this.produtoEstoque.ngOnInit();
+      this.tipoInsumos.ngOnInit();
+    }
+  
 
 }

@@ -51,6 +51,7 @@ export class ListProducaoComponent implements OnInit {
     this.getProdutos()
     this.getEstoque()
     this.producaoFiltrada = [...this.producao];
+    
   }
 
 onItemMovedToTarget(event: any) {

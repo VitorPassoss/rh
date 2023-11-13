@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+
 import { CommonModule } from '@angular/common';
 import { TabViewModule } from 'primeng/tabview';
 
@@ -26,6 +27,9 @@ import { SplitterModule } from 'primeng/splitter';
 import { CardModule } from 'primeng/card';
 import { ChipModule } from 'primeng/chip';
 
+import { CalendarModule } from 'primeng/calendar';
+import { DatePipe } from '@angular/common';
+
 
 @NgModule({
   declarations: [],
@@ -49,7 +53,9 @@ import { ChipModule } from 'primeng/chip';
     ChartModule,
     SplitterModule,
     CardModule,
-    ChipModule
+    ChipModule,
+    CalendarModule,
+    
   ],
   exports:[
     TabViewModule,
@@ -70,9 +76,11 @@ import { ChipModule } from 'primeng/chip';
     ChartModule,
     SplitterModule,
     CardModule,
-    ChipModule
+    ChipModule,
+    CalendarModule,
+    
   ],
-  providers: [MessageService]
+  providers: [MessageService, DatePipe]
 
 })
 export class SharedModule { }
