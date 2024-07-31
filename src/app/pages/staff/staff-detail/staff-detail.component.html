@@ -1,0 +1,106 @@
+<form [formGroup]="staffForm">
+    <div class="grid">
+        <div class="col-12">
+            <div class="flex flex-column gap-2">
+                <label htmlFor="nome">Nome</label>
+                <input formControlName="nome" pInputText id="nome" />
+            </div>
+        </div>
+        <div class="col-6">
+            <div class="flex flex-column gap-2"> 
+                <label htmlFor="cpf">CPF</label>
+                <input formControlName="cpf" pInputText id="cpf" />
+
+            </div>
+        </div>
+
+        <div class="col-6">
+            <div class="flex flex-column gap-2"> 
+                <label htmlFor="PIS">PIS</label>
+                <input formControlName="pis" pInputText id="pis" />
+            </div>
+        </div>
+        
+        <div class="col-6">
+            <div class="flex flex-column gap-2"> 
+                <label htmlFor="contato">Telefone</label>
+                <input formControlName="contato_phone" pInputText id="contato_phone" />
+            </div>
+        </div>
+
+        <div class="col-6">
+            <div class="flex flex-column gap-2"> 
+                <label htmlFor="contato">E-mail</label>
+                <input formControlName="contato_email" pInputText id="contato_phone" />
+            </div>
+        </div>
+
+        <div class="col-6">
+            <div class="flex flex-column gap-2"> 
+                <label htmlFor="contato">Jornada</label>
+                <input formControlName="jornada" pInputText id="contato_phone" />
+            </div>
+        </div>
+
+  
+
+
+
+
+        <div class="col-6">
+            <div class="flex flex-column gap-2"> 
+                <label htmlFor="nome">Empresa Origem</label>
+                <p-dropdown formControlName="empresa"  [style]="{width: '100%'}" [options]="empresas" optionValue="id" optionLabel="nome" ></p-dropdown>
+
+            </div>
+        </div>
+
+        <div class="col-6">
+            <div class="flex flex-column gap-2"> 
+                <label htmlFor="nome">Cargo</label>
+                <p-dropdown formControlName="cargo"  [style]="{width: '100%'}" [options]="cargos" optionValue="id" optionLabel="nome" ></p-dropdown>
+
+            </div>
+        </div>
+
+
+        <div class="col-6">
+            <div class="flex flex-column gap-2"> 
+                <label htmlFor="nome">Turnos</label>
+                <p-dropdown formControlName="turnos"  [style]="{width: '100%'}" [options]="turnos" optionValue="id" optionLabel="nome" ></p-dropdown>
+
+            </div>
+        </div>
+
+
+        <div class="col-6">
+            <div class="flex flex-column gap-2"> 
+                <label htmlFor="nome">Situação Atual</label>
+                <p-dropdown formControlName="status"  [style]="{width: '100%'}" [options]="status" optionValue="id" optionLabel="nome" ></p-dropdown>
+
+            </div>
+        </div>
+
+        <div class="col-6">
+            <div class="flex flex-column gap-2"> 
+                <label htmlFor="nome">Data de nascimento</label>
+                <p-calendar 
+                formControlName="dt_nascimento"
+                [showIcon]="true"
+                [showOnFocus]="false"
+                inputId="buttondisplay"
+               ></p-calendar>
+        
+            </div>
+        </div>
+
+     
+      
+        <div class="col-12">
+            <p>
+                <p-button  (onClick)="submitForm()" class="mr-3 " label="Salvar Alterações"></p-button>
+            </p>
+        </div>
+
+    </div>
+</form>

@@ -1,20 +1,16 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { MainComponent } from './core/main/main.component';
-import { HomeComponent } from './pages/home/home/home.component';
-import { MainInsumosComponent } from './pages/insumos/main-insumos/main-insumos.component';
-import { ProducaoComponent } from './pages/producao/producao/producao.component';
-import { SaidasHomeComponent } from './pages/saidas/saidas-home/saidas-home.component';
 import { LoginComponent } from './pages/login/login.component';
 import { JwtAuthGuard } from './guards/jwt-auth.guard';
+import { StaffComponent } from './pages/staff/staff.component';
+import { StaffDetailComponent } from './pages/staff/staff-detail/staff-detail.component';
 
 const routes: Routes = [
   { 
     path: '',  canActivate: [JwtAuthGuard], component: MainComponent, children: [
-      {path: 'painel', component: HomeComponent, },
-      {path: 'insumos', component: MainInsumosComponent},
-      {path: 'producao', component: ProducaoComponent},
-      {path: 'saidas', component: SaidasHomeComponent}
+      {path: 'staff', component: StaffComponent },
+      {path: 'staff/details/:id', component: StaffDetailComponent },
     ] 
   },
   {path: 'login', component: LoginComponent}

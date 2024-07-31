@@ -39,7 +39,7 @@ export class LoginComponent implements OnInit {
         .toPromise()
         .then(response => {
           localStorage.setItem('access_token', response.access_token);
-          this.router.navigate(['/insumos'])
+          this.router.navigate(['/staff'])
                   
         })
         .catch(async (error) => {

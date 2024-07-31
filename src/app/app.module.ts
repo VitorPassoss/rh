@@ -17,11 +17,17 @@ import { HomeComponent } from './pages/home/home/home.component';
 import { HomeModule } from './pages/home/home.module';
 import { BlockLoadingComponent } from './shared/block-loading/block-loading.component';
 import { ToastModule } from 'primeng/toast';
+import { StaffComponent } from './pages/staff/staff.component';
+import { StaffDetailComponent } from './pages/staff/staff-detail/staff-detail.component';
+import { SplitButtonModule } from 'primeng/splitbutton';
+import { SpeedDialModule } from 'primeng/speeddial';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
+    StaffComponent,
+    StaffDetailComponent,
   ],
   imports: [
     BrowserModule,
@@ -36,7 +42,9 @@ import { ToastModule } from 'primeng/toast';
     SaidasModule,
     HomeModule,
     BlockLoadingComponent,
-    ToastModule,    
+    ToastModule,
+    SplitButtonModule,
+    SpeedDialModule
   ],
   providers: [],
   bootstrap: [AppComponent]

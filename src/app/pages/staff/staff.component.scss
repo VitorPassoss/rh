@@ -1,0 +1,19 @@
+.search-div {
+    display: flex;
+    align-items: center;
+    height: 50px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.search {
+    flex: 1;
+    height: 100%;
+}
+
+.btn{
+    height: 100%;
+    padding: 0px !important;
+    border-radius: 0px !important;
+
+}
