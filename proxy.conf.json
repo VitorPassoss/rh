@@ -1,0 +1,8 @@
+{
+    "/api": {
+      "target": "http://157.245.132.73:8000",
+      "secure": false,
+      "changeOrigin": true
+    }
+  }
+  

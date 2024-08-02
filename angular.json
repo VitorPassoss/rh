@@ -72,7 +72,11 @@
             },
             "development": {
               "browserTarget": "producao:build:development"
-            }
+            },
+            "options": {
+            "proxyConfig": "proxy.conf.json"
+          }
+
           },
           "defaultConfiguration": "development"
         },
