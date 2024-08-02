@@ -8,7 +8,7 @@ import { StaffDetailComponent } from './pages/staff/staff-detail/staff-detail.co
 
 const routes: Routes = [
   { 
-    path: '',  canActivate: [JwtAuthGuard], component: MainComponent, children: [
+    path: '', component: MainComponent, children: [
       {path: 'staff', component: StaffComponent },
       {path: 'staff/details/:id', component: StaffDetailComponent },
     ] 
