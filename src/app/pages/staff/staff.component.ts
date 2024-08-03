@@ -265,7 +265,7 @@ export class StaffComponent {
         });
       }
     } else {
-      this.sharedService.showToastError("Preencha os campos corretamentes");
+      this.sharedService.showToastError("Preencha os campos corretamentes ");
     }
   }
 
