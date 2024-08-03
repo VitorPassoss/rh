@@ -5,6 +5,10 @@
             <p>
                 <p-button (click)="showAddStaff()" class="mr-3 " label="Cadastrar Profissional" icon="pi pi-plus"></p-button>
             </p>
+
+            <p>
+                <p-button (click)="copyLink()" class="mr-3 " label="Copiar Link de Cadastro" icon="pi pi-copy"></p-button>
+            </p>
           
         </div>
     </p-panel>
@@ -12,6 +16,8 @@
     <div class="flex search-div">
         <input class="search" type="text" [(ngModel)]="searchString">
         <p-button  (click)="searchList()" class="btn" label="Pesquisar" ></p-button>
+        <p-button label="Secondary" severity="secondary"  (click)="cleaned()" class="btn ml-2" label="Limpar Filtro" ></p-button>
+
     </div>
     
 </div>
@@ -32,7 +38,7 @@
         <tr>
           
             <th >Nome</th>
-            <th >CFP</th>
+            <th >CPF</th>
             <th >Empresa</th>
 
             <th >Cargo</th>

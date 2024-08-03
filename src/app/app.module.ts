@@ -21,6 +21,7 @@ import { StaffComponent } from './pages/staff/staff.component';
 import { StaffDetailComponent } from './pages/staff/staff-detail/staff-detail.component';
 import { SplitButtonModule } from 'primeng/splitbutton';
 import { SpeedDialModule } from 'primeng/speeddial';
+import { StaffRegisterComponent } from './pages/staff/staff-register/staff-register.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { SpeedDialModule } from 'primeng/speeddial';
     LoginComponent,
     StaffComponent,
     StaffDetailComponent,
+    StaffRegisterComponent,
   ],
   imports: [
     BrowserModule,

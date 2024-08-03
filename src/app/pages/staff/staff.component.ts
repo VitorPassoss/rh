@@ -89,11 +89,12 @@ export class StaffComponent {
 
 
   async getStaffs(){
+    this.loadingService.present();
 
     this.staffService.getStaffs().subscribe(
       {
         next: async(res) => {
-          console.log(res)
+          this.loadingService.dismiss();
           this.staffs = res
         }
       }
@@ -121,12 +122,19 @@ export class StaffComponent {
       'search_string': this.searchString
     }
 
+    this.loadingService.present();
+
+
     this.staffService.search(bodySearch).subscribe({
       next: async (res) => {
         console.log(res)
         this.staffs = res
+        this.loadingService.dismiss();
+
       },
       error: async () => {
+        this.loadingService.dismiss();
+
         this.sharedService.showToastError("Ocorreu algum problema na busca do usuario");
       }
     });
@@ -217,6 +225,8 @@ export class StaffComponent {
   }
 
   submitForm() {
+    this.loadingService.present();
+
     if (this.staffForm.valid) {
       const formData = this.staffForm.value;
   
@@ -228,9 +238,13 @@ export class StaffComponent {
             this.visible = false;
             this.statusVis = false;
             this.staffForm.reset();
+            this.loadingService.dismiss();
+
           },
           error: async () => {
             this.sharedService.showToastError("Ocorreu algum problema no registro");
+            this.loadingService.dismiss();
+
           }
         });
       
@@ -241,8 +255,11 @@ export class StaffComponent {
             this.sharedService.showToastSuccess("Staff criada com sucesso");
             this.visible = false;
             this.staffForm.reset();
+            this.loadingService.dismiss();
+
           },
           error: async () => {
+            this.loadingService.dismiss();
             this.sharedService.showToastError("Ocorreu algum problema no registro");
           }
         });
@@ -251,4 +268,20 @@ export class StaffComponent {
       this.sharedService.showToastError("Preencha os campos corretamentes");
     }
   }
+
+  copyLink() {
+    const link = "https://rh-orcin.vercel.app/create";
+    
+    navigator.clipboard.writeText(link).then(() => {
+        alert("O link foi copiado para a área de transferência!");
+    }).catch(err => {
+        console.error("Erro ao copiar o link: ", err);
+    });
+}
+
+
+cleaned(){
+  this.getStaffs();
+}
+
 }

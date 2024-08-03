@@ -1,0 +1,34 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgb(247, 247, 247);
+
+}
+
+.block {
+    width: 40vw;
+    padding: 2%;
+    background-color: rgb(255, 255, 255);
+    border-radius: 8px;
+}
+
+:host ::ng-deep .conf .p-button{
+    width: 100%; //your font size here
+  }
+
+
+  .msg-div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 10%;
+
+    p {
+        font-size: 25px;
+        margin: 0px;
+    }
+    strong {
+        font-size: 25px;
+    }
+  }

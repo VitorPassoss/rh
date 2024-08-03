@@ -6,18 +6,21 @@ import { StaffService } from '../staff.service';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
-  selector: 'app-staff-detail',
-  templateUrl: './staff-detail.component.html',
-  styleUrls: ['./staff-detail.component.scss']
+  selector: 'app-staff-register',
+  templateUrl: './staff-register.component.html',
+  styleUrls: ['./staff-register.component.scss']
 })
-export class StaffDetailComponent {
-  staffForm: FormGroup
+export class StaffRegisterComponent {
+  staffForm: FormGroup 
   staff:any = null;
   userId: any;
   empresas:any = []
   cargos:any = []
   status:any = []
   turnos:any = []
+  
+
+  created:boolean = false;
 
   constructor(    private formBuilder: FormBuilder,
     public sharedService: SharedService,
@@ -33,7 +36,7 @@ export class StaffDetailComponent {
     turnos: [null, Validators.required],
     contato_phone: [null, Validators.required],
     contato_email: [null, [Validators.required, Validators.email]],
-    cpf: [null, [Validators.required, Validators.pattern(/^\d{3}\.\d{3}\.\d{3}-\d{2}$/)]],
+    cpf: [null, [Validators.required]],
     empresa: [null, Validators.required],
     status: [null, Validators.required],
     cargo: [null, Validators.required],
@@ -46,12 +49,10 @@ export class StaffDetailComponent {
   }); }
 
   ngOnInit(): void {
-    this.getStaff();
-    this.getEmpresas()
-    this.getCargos()
-    this.getStatus()
-    this.getTurnos()
-
+    this.getEmpresas();
+    this.getCargos();
+    this.getStatus();
+    this.getTurnos();
   }
 
 
@@ -95,55 +96,29 @@ export class StaffDetailComponent {
     )
   }
 
-  async getStaff(){
+
+
+
+  submitForm() {
     this.loadingService.present();
-
-    this.userId = this.route.snapshot.paramMap.get('id')!;
-
-    this.staffService.getDetail(this.userId).subscribe(
-      {
-        next: async(res) => {
-          this.staff = res;
-            this.staffForm.patchValue({
-              ...res,
-              empresa: res.empresa.id,
-              cargo: res.cargo.id,
-              turnos: res.turnos.id,
-              status: res.status.id,
-              dt_nascimento: res.dt_nascimento ? new Date(res.dt_nascimento) : null
-
-            });
-            this.loadingService.dismiss();
-        }
-      }
-    )
-  }
-  
-
-
- submitForm() {
-  this.loadingService.present();
-
     if (this.staffForm.valid) {
       const formData = this.staffForm.value;
   
-        this.staffService.updtStaffs(this.userId, formData).subscribe({
+        this.staffService.saveStaffs(formData).subscribe({
           next: async () => {
-            this.getStaff()
+            this.created = true
             this.loadingService.dismiss();
-
-            this.sharedService.showToastSuccess("Staff atualizado com sucesso");
-          
+            this.sharedService.showToastSuccess("Staff criada com sucesso");
           },
           error: async () => {
             this.loadingService.dismiss();
-
-            this.sharedService.showToastError("Ocorreu algum problema na atualização");
+            this.sharedService.showToastError("Ocorreu algum problema no registro");
           }
         });
-    }else {
+      }
+     else {
       this.sharedService.showToastError("Preencha os campos corretamentes");
     }
-}
-
+  
+  }
 }
