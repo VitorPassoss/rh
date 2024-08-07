@@ -170,6 +170,8 @@ $taurus_client_web-theme: mat.define-light-theme((
     }
 }
 
+
+
 .cList {
     @media only screen and (max-width: 440px) {
         padding-inline: 10px;
@@ -186,3 +188,5 @@ $taurus_client_web-theme: mat.define-light-theme((
 }
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+

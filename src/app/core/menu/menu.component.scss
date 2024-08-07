@@ -1,5 +1,5 @@
 .sidenav {
-    height: 100%;
+    height: 100vh;
     
     // start open if start closed change width to 0
     width: 250px;
@@ -11,8 +11,9 @@
     padding-left: 48px;
     padding-right: 18px;
     transition: 0.5s;
-    border: 1px solid #E9ECEF;
-    background-color: #FFFFFF;
+    border: 1px solid #232732;
+    background-color: #232732;
+    margin: 0px;
 }
 
 .sidenav a {
@@ -39,17 +40,17 @@
     line-height: 130%;
 }
 .sidenav-item a{
-    color: #868E96;
+    color: #ffffff;
 }
 
 .sidenav-item:hover {
-    color: var(---color-primary);
-    background: rgba(21, 88, 255, 0.05);
+    color: #F77E2B;
+    background: rgba(7, 72, 237, 0.113);
     cursor: pointer;
 }
 
 .sidenav-item:hover a {
-    color: var(---color-primary);
+    color: #F77E2B;
 }
 .sidenav-item:hover img {
     filter: invert(1) sepia(1) saturate(5) hue-rotate(175deg);
@@ -59,7 +60,7 @@
     background: rgba(21, 88, 255, 0.05);
 }
 .sidenav-item.active a {
-    color: var(---color-primary);
+    color: #F77E2B;
 }
 
 .sidenav-item.active .sidenav-icon{
@@ -82,7 +83,7 @@
 
 
     h1 {
-        color: #3A55FC;
+        color: #F77E2B;
         font-size: 20px;
         text-align: center;
         font-weight: 700;
